@@ -1,0 +1,300 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* GFTR brand palette — the single source of truth for colour */
+:root {
+  --gftr-pink: #e9a3ba;
+  --gftr-burgundy: #651e39;
+  --gftr-cream: #fff4e8;
+  --gftr-cherry: #e52b35;
+  --gftr-bubblegum: #ff78b2;
+  --gftr-ink: #21141c;
+  --gftr-butter: #ffe17a;
+
+  /* derived pinks for borders, panels and backgrounds */
+  --gftr-pink-mist: #fcebf1;
+  --gftr-pink-pale: #f7d3df;
+  --gftr-pink-deep: #c97893;
+  --gftr-burgundy-soft: #8a3456;
+
+  --background: var(--gftr-pink-mist);
+  --foreground: var(--gftr-ink);
+  --card: var(--gftr-cream);
+  --card-foreground: var(--gftr-ink);
+  --popover: var(--gftr-cream);
+  --popover-foreground: var(--gftr-ink);
+  --primary: var(--gftr-burgundy);
+  --primary-foreground: var(--gftr-cream);
+  --secondary: var(--gftr-pink);
+  --secondary-foreground: var(--gftr-burgundy);
+  --muted: var(--gftr-pink-pale);
+  --muted-foreground: #5a3446;
+  --accent: var(--gftr-bubblegum);
+  --accent-foreground: var(--gftr-ink);
+  --destructive: var(--gftr-cherry);
+  --border: var(--gftr-burgundy);
+  --input: var(--gftr-burgundy);
+  --ring: var(--gftr-cherry);
+  --radius: 0.25rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-pixel: var(--font-pixelify), ui-monospace, monospace;
+  --font-headline: var(--font-anton), Impact, 'Arial Narrow', sans-serif;
+  --font-display: var(--font-shrikhand), Georgia, serif;
+
+  --color-pink: var(--gftr-pink);
+  --color-burgundy: var(--gftr-burgundy);
+  --color-burgundy-soft: var(--gftr-burgundy-soft);
+  --color-cream: var(--gftr-cream);
+  --color-cherry: var(--gftr-cherry);
+  --color-bubblegum: var(--gftr-bubblegum);
+  --color-ink: var(--gftr-ink);
+  --color-butter: var(--gftr-butter);
+  --color-pink-mist: var(--gftr-pink-mist);
+  --color-pink-pale: var(--gftr-pink-pale);
+  --color-pink-deep: var(--gftr-pink-deep);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 2px);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scrollbar-color: var(--gftr-burgundy) var(--gftr-pink-pale);
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+  :focus-visible {
+    outline: 3px dashed var(--gftr-cherry);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--gftr-butter);
+    color: var(--gftr-ink);
+  }
+}
+
+/* ---------- retro desktop surfaces ---------- */
+@layer components {
+  .desktop-bg {
+    background-color: var(--gftr-pink);
+    background-image:
+      radial-gradient(var(--gftr-pink-pale) 1.6px, transparent 1.7px),
+      radial-gradient(var(--gftr-pink-pale) 1.6px, transparent 1.7px);
+    background-size: 22px 22px;
+    background-position:
+      0 0,
+      11px 11px;
+  }
+
+  .gingham {
+    background-color: var(--gftr-pink-mist);
+    background-image:
+      linear-gradient(90deg, rgb(233 163 186 / 0.35) 50%, transparent 50%),
+      linear-gradient(rgb(233 163 186 / 0.35) 50%, transparent 50%);
+    background-size: 16px 16px;
+  }
+
+  .ruled-paper {
+    background-color: var(--gftr-cream);
+    background-image:
+      linear-gradient(90deg, transparent 2.25rem, rgb(229 43 53 / 0.35) 2.25rem, rgb(229 43 53 / 0.35) calc(2.25rem + 1px), transparent calc(2.25rem + 1px)),
+      repeating-linear-gradient(transparent, transparent 1.75rem, rgb(233 163 186 / 0.7) 1.75rem, rgb(233 163 186 / 0.7) calc(1.75rem + 1px));
+    line-height: 1.75rem;
+  }
+
+  .bevel-out {
+    box-shadow:
+      inset 2px 2px 0 #fff,
+      inset -2px -2px 0 var(--gftr-pink-deep);
+  }
+  .bevel-in {
+    box-shadow:
+      inset 2px 2px 0 var(--gftr-pink-deep),
+      inset -2px -2px 0 #fff;
+  }
+
+  .titlebar-pink {
+    background: linear-gradient(180deg, #ffa6cb 0%, var(--gftr-bubblegum) 48%, #f0609e 52%, #f26aa4 100%);
+  }
+  .titlebar-burgundy {
+    background: linear-gradient(180deg, #8a3456 0%, var(--gftr-burgundy) 52%, #571832 100%);
+  }
+
+  .hard-shadow {
+    box-shadow: 5px 5px 0 var(--gftr-burgundy);
+  }
+  .hard-shadow-ink {
+    box-shadow: 5px 5px 0 var(--gftr-ink);
+  }
+
+  .text-outline-pink {
+    text-shadow:
+      3px 3px 0 var(--gftr-pink),
+      6px 6px 0 var(--gftr-burgundy);
+  }
+
+  .lcd {
+    background: var(--gftr-ink);
+    background-image: repeating-linear-gradient(0deg, rgb(255 255 255 / 0.04) 0 1px, transparent 1px 3px);
+  }
+
+  /* retro scrollbars for scroll containers */
+  .retro-scroll::-webkit-scrollbar {
+    width: 16px;
+    height: 16px;
+  }
+  .retro-scroll::-webkit-scrollbar-track {
+    background: var(--gftr-pink-pale);
+  }
+  .retro-scroll::-webkit-scrollbar-thumb {
+    background: var(--gftr-pink);
+    border: 2px solid var(--gftr-burgundy);
+    box-shadow: inset 2px 2px 0 #fff;
+  }
+}
+
+/* page-level scrollbar */
+::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+::-webkit-scrollbar-track {
+  background: var(--gftr-pink-pale);
+  border-left: 2px solid var(--gftr-burgundy);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gftr-pink);
+  border: 2px solid var(--gftr-burgundy);
+  box-shadow: inset 2px 2px 0 #fff;
+}
+
+/* ---------- motion ---------- */
+@keyframes window-pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-window-pop {
+  animation: window-pop 320ms cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(-4deg);
+  }
+  75% {
+    transform: rotate(4deg);
+  }
+}
+.animate-wiggle {
+  animation: wiggle 260ms ease-in-out 2;
+}
+
+@keyframes blink-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.animate-caret {
+  animation: blink-caret 1s steps(1) infinite;
+}
+
+@keyframes boot-bar {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.animate-boot {
+  animation: boot-bar 380ms steps(8) forwards;
+}
+
+@keyframes flip-forward {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(-180deg);
+  }
+}
+@keyframes flip-backward {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(180deg);
+  }
+}
+@keyframes flip-in-back {
+  from {
+    transform: rotateY(-180deg);
+  }
+  to {
+    transform: rotateY(0deg);
+  }
+}
+.leaf {
+  transform-style: preserve-3d;
+  animation-duration: 650ms;
+  animation-timing-function: cubic-bezier(0.45, 0.05, 0.3, 1);
+  animation-fill-mode: forwards;
+}
+.leaf-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.leaf-back {
+  transform: rotateY(180deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
